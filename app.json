@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "forja",
-    "slug": "forja",
+    "name": "A Forja",
+    "slug": "aforja",
     "platforms": [
       "ios",
       "android",
@@ -13,7 +13,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000000"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
