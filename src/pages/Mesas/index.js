@@ -5,13 +5,31 @@ import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 
 import styles from './styles';
 
+import api from '../../services/api';
+
 export default function Mesas() {
 
   const navigation = useNavigation();
 
-  function navigateToDetails() {
-    navigation.navigate('Detail');
+  const [mesas, setMesas] = React.useState([]);
+
+  function navigateToDetails(mesa) {
+    navigation.navigate('Detail', { mesa });
   }
+
+  React.useEffect(() => {
+    const getMesas = async () => {
+      await api.get('api/mesa/', { params: {
+        latitude: -23.27705208825325,
+        longitude: -45.86293385453567
+      }}).then(response => {
+        setMesas(response.data);
+      }).catch((error) => {
+        console.log(error)
+      })
+    }
+    getMesas();
+  }, [])
 
   return (
       <View style={styles.container}>
@@ -21,46 +39,25 @@ export default function Mesas() {
         
         <View style={styles.content}>
           <FlatList
-            data={[1, 2, 3, 4, 5]}
+            data={mesas}
             style={styles.mesaList}
-            keyExtractor={mesa => String(mesa)}
+            keyExtractor={item => String(item.id)}
             showsVerticalScrollIndicator={false}
-            renderItem={() => (
-              <View style={styles.mesa}>
-                <View style={styles.mesaHeader}>
-                  <Text style={styles.mesaTitle}>RPG Incrível</Text>
-                </View>
+            renderItem={({ item: mesa }) => (
+              <TouchableOpacity style={styles.mesa} onPress={() => navigateToDetails(mesa)} >
                 <View style={styles.mesaContent}>
-                  <View style={styles.mesaColumn1}>
-                    <Text style={styles.mesaProperty}>Sistema</Text>
-                    <Text style={styles.mesaValue}>D&D 5E</Text>
-
-                    <Text style={styles.mesaProperty}>Plataforma</Text>
-                    <Text style={styles.mesaValue}>Discord</Text>
-
-                    <Text style={styles.mesaProperty}>Tipo</Text>
-                    <Text style={styles.mesaValue}>One Shot</Text>
+                  <View>
+                    <View style={styles.mesaHeader}>
+                      <Text style={styles.mesaTitle}>{mesa.titulo}</Text>
+                    </View>
+                    <Text>Sistema</Text>
                   </View>
-                  <View style={styles.mesaColumn2}>
-                    <Text style={styles.mesaProperty}>Data</Text>
-                    <Text style={styles.mesaValue}>Segunda e Quarta</Text>
-
-                    <Text style={styles.mesaProperty}>Horário</Text>
-                    <Text style={styles.mesaValue}>19:00</Text>
-
-                    <Text style={styles.mesaProperty}>Vagas</Text>
-                    <Text style={styles.mesaValue}>01</Text>
+                  <View style={styles.cardVagas}>
+                    <Text style={styles.txtVagas}>Vagas</Text>
+                    <Text style={styles.numVagas}>{mesa.vagas}</Text>
                   </View>
                 </View>
-                <View style={styles.mesaOptions}>
-                  <TouchableOpacity
-                    style={styles.detailsButton}
-                    onPress={navigateToDetails}
-                  >
-                    <Text style={styles.detailsText}>Detalhes</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
+              </TouchableOpacity>
             )}
           />
         </View>

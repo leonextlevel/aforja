@@ -4,8 +4,7 @@
     "slug": "aforja",
     "platforms": [
       "ios",
-      "android",
-      "web"
+      "android"
     ],
     "version": "1.0.0",
     "orientation": "portrait",
@@ -22,7 +21,16 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.fatec.aforja"
+    },
+    "android": {
+      "package": "com.fatec.aforja",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyBZNWYOWcCBsID86BCSVBVlldRwQ9M6XJo"
+        }
+      }
     }
   }
 }

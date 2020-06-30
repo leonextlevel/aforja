@@ -4,10 +4,10 @@ import Constants from 'expo-constants';
 export default StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#707070'
+        backgroundColor: '#fdf5e6'
     },
     header: {
-        backgroundColor: '#505050',
+        backgroundColor: '#477979',
         alignItems: 'center',
         paddingTop: Constants.statusBarHeight + 5
     },
@@ -18,14 +18,23 @@ export default StyleSheet.create({
     },
     content: {
         flex: 1,
-        paddingHorizontal: 24,
+        paddingHorizontal: 10,
         marginTop: 16,
     },
     mesa: {
-        padding: 24,
+        padding: 10,
         borderRadius: 8,
-        backgroundColor: '#808080',
+        backgroundColor: '#fff',
         marginBottom: 16,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 2,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+
+        elevation: 5,
     },
     mesaHeader: {
         alignItems: 'center',
@@ -36,37 +45,26 @@ export default StyleSheet.create({
         justifyContent: 'space-between'
     },
     mesaTitle: {
-        color: '#fff',
+        color: '#477979',
         fontWeight: 'bold',
         fontSize: 24,
         textTransform: 'uppercase'
     },
-    mesaColumn1: {
-        alignItems: 'flex-start'
-    },
-    mesaColumn2: {
-        alignItems: 'flex-end'
-    },
-    mesaProperty: {
-        fontSize: 18,
-        color: '#EEEEEE',
-        fontWeight: 'bold'
-    },
-    mesaValue: {
-        color: '#FFF',
-        marginBottom: 8,
-    },
-    mesaOptions: {
-        flexDirection: 'row',
-        justifyContent: 'flex-end'
-    },
-    detailsButton: {
+    cardVagas: {
+        backgroundColor: '#009900',
+        padding: 5,
+        height: 100,
+        borderRadius: 5,
         alignItems: 'center',
-        marginTop: 8,
-        backgroundColor: '#456732',
-        borderRadius: 8
+        justifyContent: 'center'
     },
-    detailsText: {
-        padding: 8
+    txtVagas: {
+        color: '#fff',
+        fontWeight: 'bold',
+    },
+    numVagas: {
+        color: '#fff',
+        fontSize: 24,
+        fontWeight: 'bold',
     }
 });
